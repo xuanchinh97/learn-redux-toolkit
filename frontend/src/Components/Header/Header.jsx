@@ -1,6 +1,7 @@
 import "./header.css";
-
+import { useSelector } from "react-redux";
 function Header({ setEdit }) {
+  const user = useSelector((state) => state.user);
 
   const handleEdit = () => {
     setEdit(true);
@@ -18,14 +19,10 @@ function Header({ setEdit }) {
         <div className="info-edit" onClick={handleEdit}>
           Edit
         </div>
-        <img
-          src="https://avatars.githubusercontent.com/u/87141231"
-          alt="avatar"
-          className="info-ava"
-        />
-        <div className="info-username">Xuan Chinh</div>
-        <div className="info-age">21</div>
-        <div className="info-about">I'm a Frontend Developer</div>
+        <img src={user.avatarUrl} alt="avatar" className="info-ava" />
+        <div className="info-username">{user.name}</div>
+        <div className="info-age">{user.age}</div>
+        <div className="info-about">{user.about}</div>
       </div>
     </header>
   );

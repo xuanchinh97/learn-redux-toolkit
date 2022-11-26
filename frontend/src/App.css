@@ -12,7 +12,6 @@
 
 body,
 .App {
-  min-height: 100vh;
   margin: 0;
   text-align: left;
   scroll-behavior: smooth;
@@ -22,6 +21,7 @@ body,
   font-family: "Noto Sans", sans-serif;
   background-color: #0c0c0c;
   color: white;
+  height: 100%;
 }
 .loading {
   color: white;

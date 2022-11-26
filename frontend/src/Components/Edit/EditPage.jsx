@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { updateUser } from "../../redux/userSlice";
 import "./edit.css";
 
 function EditPage({ setEdit }) {
@@ -10,57 +12,75 @@ function EditPage({ setEdit }) {
     "https://yt3.ggpht.com/a/AGF-l7_f-5QERHwQIUr8d_TJ2n04aJrNqjaFzuwyGQ=s400-c-k-c0xffffffff-no-rj-mo",
     "https://i.pinimg.com/originals/99/f2/1e/99f21e16b3cec0f4da46a0f9c7c577b2.jpg",
   ];
-console.log();
-  const [userName, setUserName] = useState("Xuan Chinh");
-  const [age, setAge] = useState(22);
-  const [about, setAbout] = useState("");
-  const [url, setUrl] = useState(
-    "https://avatars.githubusercontent.com/u/87141231"
-  );
-  const [theme, setTheme] = useState("#ff9051");
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const [userObject, setUserObject] = useState({
+    name: user.name,
+    age: user.age,
+    about: user.about,
+    avatarUrl: user.avatarUrl,
+    theme: user.theme,
+  });
+
+  const onChangeInput = (e) => {
+    setUserObject({
+      ...userObject,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const onClickImage = (e) => {
+    setUserObject({
+      ...userObject,
+      [e.target.name]: e.target.src,
+    });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setEdit(false);
+    dispatch(updateUser(userObject));
   };
 
   return (
     <form>
       <section className="edit-container">
-        <button className="save" onClick={handleSubmit}>Save</button>
+        <button className="save" onClick={handleSubmit}>
+          Save
+        </button>
         <div className="edit-profile">Edit profile</div>
         <div className="input-container">
           <label>Display name</label>
           <input
             type="text"
-            placeholder="name"
-            id="username"
-            onClick={(e) => setUserName(e.target.value)}
+            placeholder={user.name}
+            name="name"
+            onChange={onChangeInput}
           />
           <label>Age</label>
           <input
             type="text"
-            placeholder="age"
-            id="age"
-            onChange={(e) => setAge(e.target.value)}
+            placeholder={user.age}
+            name="age"
+            onChange={onChangeInput}
           />
           <label>About</label>
           <textarea
-            placeholder="about"
-            id="about"
-            onChange={(e) => setAbout(e.target.value)}
+            placeholder={user.about}
+            name="about"
+            onChange={onChangeInput}
           />
           <label>Profile Picture</label>
           <div className="input-image-container">
             {avatarUrl.map((url) => (
-              <>
-                <img
-                  src={url}
-                  className="input-image"
-                  alt="avatar"
-                  onClick={(e) => setUrl(e.target.src)}
-                />
-              </>
+              <img
+                key={url}
+                src={url}
+                className="input-image"
+                alt="avatar"
+                name="avatarUrl"
+                onClick={onClickImage}
+              />
             ))}
           </div>
           <div className="theme-container">
@@ -68,8 +88,8 @@ console.log();
             <input
               type="color"
               className=""
-              id="theme"
-              onChange={(e) => setTheme(e.target.value)}
+              name="theme"
+              onChange={onChangeInput}
             />
           </div>
         </div>
