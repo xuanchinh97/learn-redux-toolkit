@@ -1,0 +1,31 @@
+.edit-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.input-image-container {
+  flex-wrap: wrap;
+}
+
+label:nth-child(7) {
+  margin-bottom: 1rem;
+}
+
+.input-image {
+  cursor: pointer;
+  border-radius: 14px;
+  background-color: white;
+  padding: 0.5rem;
+  width: 90px;
+  margin-right: 1rem;
+  margin-bottom: 2rem;
+  height: 130px;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.input-image.selected {
+  border: 1px solid red;
+  box-shadow: 0 0 10px red;
+}

@@ -1,0 +1,27 @@
+.post-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 50px 0 200px;
+}
+
+.post-item {
+  width: 80%;
+  padding: 20px;
+  background-color: #dddddd;
+  margin: 20px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(172, 172, 172, 0.363);
+}
+
+.post-container h3 {
+  background-color: gray;
+  margin: 20px;
+}
+
+.post-container label{
+  font-weight: 500;
+}
+
+.post-content {
+}

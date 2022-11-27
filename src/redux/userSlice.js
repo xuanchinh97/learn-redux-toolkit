@@ -7,7 +7,7 @@ export const userSlice = createSlice({
         age: '22',
         about: 'I\'m a Frontend Developer',
         avatarUrl: 'https://avatars.githubusercontent.com/u/87141231',
-        theme: 'red'
+        theme: '#128F00'
     },
     reducers: {
         updateUser: (state, action) => {

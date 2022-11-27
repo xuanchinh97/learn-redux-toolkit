@@ -30,6 +30,12 @@ function EditPage({ setEdit }) {
   };
 
   const onClickImage = (e) => {
+    const images = document.querySelectorAll(".input-image");
+    for (const image of images) {
+      image.classList.remove("selected");
+    }
+    e.target.className += " selected";
+    
     setUserObject({
       ...userObject,
       [e.target.name]: e.target.src,
@@ -46,28 +52,30 @@ function EditPage({ setEdit }) {
     <form>
       <section className="edit-container">
         <button className="save" onClick={handleSubmit}>
-          Save
+          Update
         </button>
-        <div className="edit-profile">Edit profile</div>
         <div className="input-container">
-          <label>Display name</label>
+          <label for="name">Name</label>
           <input
             type="text"
             placeholder={user.name}
             name="name"
+            id="name"
             onChange={onChangeInput}
           />
-          <label>Age</label>
+          <label for="age">Age</label>
           <input
             type="text"
             placeholder={user.age}
+            id="age"
             name="age"
             onChange={onChangeInput}
           />
-          <label>About</label>
+          <label for="about">About</label>
           <textarea
             placeholder={user.about}
             name="about"
+            id="about"
             onChange={onChangeInput}
           />
           <label>Profile Picture</label>
